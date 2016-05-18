@@ -38,16 +38,17 @@
         <RowDefinition Height="50" />
         <RowDefinition Height="50" />
         <RowDefinition />
+        <RowDefinition Height="50" />
       </Grid.RowDefinitions>
     
       <Entry Grid.Row="0" VerticalOptions="Center" Text="{Binding InputValue}" />
       <Button Grid.Row="1" VerticalOptions="Center" Command="{Binding AddCommand}" Text="+" />
-      <ListView Grid.Row="2" IsPullToRefreshEnabled="True" ItemsSource="{Binding ListItems}" SelectedItem="{Binding ListSelectedItem}" >
+      <ListView Grid.Row="2" ItemsSource="{Binding ListItems}" SelectedItem="{Binding ListSelectedItem}" >
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
                <ViewCell.ContextActions>
-                  <MenuItem CommandParameter="{Binding .}" Command="{Binding RemoveCommand}" Text="Delete" IsDestructive="True" />
+                  <MenuItem CommandParameter="{Binding .}" Command="{Binding RemoveCommand}" Text="MenuItem" IsDestructive="True" />
                </ViewCell.ContextActions>
               
                <StackLayout Padding="15,0">
@@ -58,6 +59,7 @@
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
+      <Button Grid.Row="3" VerticalOptions="Center" Command="{Binding AsyncCommand}" Text="AsyncTask" />
       
     </Grid>
   </Grid>
