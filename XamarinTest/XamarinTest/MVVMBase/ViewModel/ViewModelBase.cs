@@ -4,55 +4,55 @@ using System.Diagnostics;
 
 namespace MVVMBase.ViewModel
 {
-    /// <summary>
-    /// Base class for all ViewModel classes in the app.
-    /// It provides support for property change notifications
-    /// and has a DisplayName property. This class is abstract.
-    /// </summary>
-    public abstract class ViewModelBase : INotifyPropertyChanged, IDisposable
-    {
-        #region Fields
+	/// <summary>
+	/// Base class for all ViewModel classes in the app.
+	/// It provides support for property change notifications
+	/// and has a DisplayName property. This class is abstract.
+	/// </summary>
+	public abstract class ViewModelBase : INotifyPropertyChanged, IDisposable
+	{
+		#region Fields
 
-        private bool _cancelled;
-        private bool _working;
-        //private static readonly Thread _mainThread = Thread.CurrentThread;
+		private bool _cancelled;
+		private bool _working;
+		//private static readonly Thread _mainThread = Thread.CurrentThread;
 
-        #endregion // Fields
+		#endregion // Fields
 
-        #region Constructor
+		#region Constructor
 
-        protected ViewModelBase()
+		protected ViewModelBase()
 		{
 		}
 
 		#endregion // Constructor
 
-        #region Properties
+		#region Properties
 
-        protected bool Cancelled
-        {
-            get { return _cancelled; }
-            private set
-            {
-                _cancelled = value;
-            }
-        }
+		protected bool Cancelled
+		{
+			get { return _cancelled; }
+			private set
+			{
+				_cancelled = value;
+			}
+		}
 
-        public bool Working
-        {
-            get { return _working; }
-            private set
-            {
-                _working = value;
-                OnPropertyChanged("Working");
-            }
-        }
+		public bool Working
+		{
+			get { return _working; }
+			private set
+			{
+				_working = value;
+				OnPropertyChanged("Working");
+			}
+		}
 
-        #endregion // Properties
+		#endregion // Properties
 
-        #region Debugging Aides
+		#region Debugging Aides
 
-        /// <summary>
+		/// <summary>
 		/// Returns whether an exception is thrown, or if a Debug.Fail() is used
 		/// when an invalid property name is passed to the VerifyPropertyName method.
 		/// The default value is false, but subclasses used by unit tests might
@@ -71,15 +71,15 @@ namespace MVVMBase.ViewModel
 		/*public void VerifyPropertyName(string propertyName)
 		{
 
-            // Verify that the property name matches a real,
-            // public, instance property on this object.
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
-            {
-                string msg = "Invalid property name: " + propertyName;
-                if (this.ThrowOnInvalidPropertyName)
-                    throw new Exception(msg);
-            }
-        }*/
+			// Verify that the property name matches a real,
+			// public, instance property on this object.
+			if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+			{
+				string msg = "Invalid property name: " + propertyName;
+				if (this.ThrowOnInvalidPropertyName)
+					throw new Exception(msg);
+			}
+		}*/
 
 		#endregion // Debugging Aides
 
@@ -129,52 +129,52 @@ namespace MVVMBase.ViewModel
 
 		#endregion // IDisposable Members
 
-        #region Async
+		#region Async
 
-        /// <summary>
-        /// Atomically sets Cancelled = true. Used to signal background
-        /// work that it needs to halt. Background code would be responsible
-        /// for checking Cancelled status.
-        /// </summary>
-        protected void Cancel()
-        {
-            lock (this)
-            {
-                Cancelled = true;
-            }
-        }
+		/// <summary>
+		/// Atomically sets Cancelled = true. Used to signal background
+		/// work that it needs to halt. Background code would be responsible
+		/// for checking Cancelled status.
+		/// </summary>
+		protected void Cancel()
+		{
+			lock (this)
+			{
+				Cancelled = true;
+			}
+		}
 
-        /// <summary>
-        /// Executes code asynchronously on a background thread.
-        /// </summary>
-        /// <param name="func">The code to execute asynchronously</param>
-        /*rotected void Background(Action func)
-        {
-            new Thread((ThreadStart)delegate
-                {
-                    Dispatcher.CurrentDispatcher.Invoke((Action)delegate
-                    {
-                        Working = true;
-                        Cancelled = false;
+		/// <summary>
+		/// Executes code asynchronously on a background thread.
+		/// </summary>
+		/// <param name="func">The code to execute asynchronously</param>
+		/*rotected void Background(Action func)
+		{
+			new Thread((ThreadStart)delegate
+				{
+					Dispatcher.CurrentDispatcher.Invoke((Action)delegate
+					{
+						Working = true;
+						Cancelled = false;
 
-                        func();
+						func();
 
-                        Working = false;
-                        Cancelled = false;
-                    });
-                }
-            ).Start();
-        }*/
+						Working = false;
+						Cancelled = false;
+					});
+				}
+			).Start();
+		}*/
 
-        /// <summary>
-        /// Executes code on the main (UI) thread.
-        /// </summary>
-        /// <param name="func">The code to execute</param>
-        /*protected void UpdateViewModel(Action func)
-        {
-            Dispatcher.FromThread(_mainThread).Invoke(func);
-        }*/
+		/// <summary>
+		/// Executes code on the main (UI) thread.
+		/// </summary>
+		/// <param name="func">The code to execute</param>
+		/*protected void UpdateViewModel(Action func)
+		{
+			Dispatcher.FromThread(_mainThread).Invoke(func);
+		}*/
 
-        #endregion // Async
-    }
+		#endregion // Async
+	}
 }

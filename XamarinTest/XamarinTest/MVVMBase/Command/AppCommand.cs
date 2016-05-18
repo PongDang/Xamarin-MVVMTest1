@@ -49,16 +49,16 @@ namespace MVVMBase.Command
 			return mCanExecute == null ? true : mCanExecute(parameter);
 		}
 
-        /*public event EventHandler CanExecuteChanged
+		/*public event EventHandler CanExecuteChanged
 		{
 			add { CommandManager.RequerySuggested += value; }
 			remove { CommandManager.RequerySuggested -= value; }
 		}*/
 
-        public event EventHandler CanExecuteChanged;
+		public event EventHandler CanExecuteChanged;
 
 
-        public void Execute(object parameter)
+		public void Execute(object parameter)
 		{
 			mExecute(parameter);
 		}
