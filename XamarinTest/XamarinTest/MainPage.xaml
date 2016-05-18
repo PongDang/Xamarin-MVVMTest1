@@ -21,7 +21,7 @@
 
       <Editor Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Left}" />
       <Picker x:Name="myPicker" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" SelectedIndex="{Binding SelectedOperationIndex}" />
-      <Editor Grid.Row="0" Grid.Column="2" x:Name="et_test" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Right}" />
+      <Editor Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Right}" />
       <Label Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="=" />
       <Label Grid.Row="0" Grid.Column="4" VerticalOptions="Center" Text="{Binding Result, StringFormat='{0:F4}', Mode=OneWay}" />
 
