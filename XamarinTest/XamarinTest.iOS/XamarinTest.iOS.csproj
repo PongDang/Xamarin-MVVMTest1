@@ -140,7 +140,7 @@
   <ItemGroup>
     <ProjectReference Include="..\XamarinTest\XamarinTest.csproj">
       <Project>{3A7EF2E6-FB0E-4699-AAAC-4FB60BE3C57A}</Project>
-      <Name>XamarinTest</Name>
+      <Name>XamarinTest1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
