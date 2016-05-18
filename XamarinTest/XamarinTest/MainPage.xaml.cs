@@ -12,15 +12,26 @@ namespace XamarinTest
         public MainPage()
         {
             InitializeComponent();
-
-            label_test.TextColor = Color.Red;
-            btn_test.Clicked += Btn_test_Clicked;
+            BindingContext = new MyViewModel1();
         }
 
-        private void Btn_test_Clicked(object sender, EventArgs e)
+
+        /* Windows의 ComboBox의 대응하는 View는 Picker. 특이사항으로 Item은 Binding 불가. */
+        protected override void OnBindingContextChanged()
         {
-            //throw new NotImplementedException();
-            DisplayAlert("Title", "Message", "확인", "취소");
+            base.OnBindingContextChanged();
+
+            var vm = BindingContext as MyViewModel1;
+            if (vm != null)
+            {
+                myPicker.Items.Clear();
+                foreach (var item in vm.Operations)
+                {
+                    myPicker.Items.Add(item);
+                }
+
+                myPicker.SelectedIndex = 0;
+            }
         }
     }
 }

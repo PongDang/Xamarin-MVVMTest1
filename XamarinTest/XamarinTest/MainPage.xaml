@@ -1,15 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:XamarinTest"
+             xmlns:local="clr-namespace:XamarinTest;assembly=XamarinTest"
              x:Class="XamarinTest.MainPage">
 
-  <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
-    <Label x:Name="label_test" Text="Welcome to Xamarin Forms!"
-           VerticalOptions="Center"
-           HorizontalOptions="Center" />
+  <Grid>
+    <Grid VerticalOptions="Center">
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="2*" />
+        <ColumnDefinition />
+        <ColumnDefinition Width="2*" />
+        <ColumnDefinition />
+        <ColumnDefinition Width="2*" />
+      </Grid.ColumnDefinitions>
 
-    <Button x:Name="btn_test" Text="Button" />
-  </StackLayout>
+      <Editor Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Left}" />
+      <Picker x:Name="myPicker" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" SelectedIndex="{Binding SelectedOperationIndex}" />
+      <Editor Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Right}" />
+      <Label Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="=" />
+      <Label Grid.Row="0" Grid.Column="4" VerticalOptions="Center" Text="{Binding Result, StringFormat='{0:F4}', Mode=OneWay}" />
+
+      <Button Grid.Row="1" Grid.ColumnSpan="5" VerticalOptions="Center" Command="{Binding AddCommand}" Text="?" />
+    </Grid>
+  </Grid>
 
 </ContentPage>
