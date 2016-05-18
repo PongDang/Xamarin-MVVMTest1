@@ -92,8 +92,6 @@ namespace XamarinTest
                     List<string> tempList = new List<string>();
                     Task.Factory.StartNew((obj1) =>
                     {
-                        isRunning = true;
-
                         Random r = new Random();
 
                         for (int i = 0; i < 999999; i++)
@@ -104,7 +102,6 @@ namespace XamarinTest
                         listItems = new ObservableCollection<string>(tempList);
                         OnPropertyChanged("ListItems");
 
-                        isRunning = false;
                     }, TaskCreationOptions.LongRunning, cancellationTokenSource.Token);
                 }));
             }
