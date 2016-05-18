@@ -24,7 +24,7 @@ namespace XamarinTest
         #endregion
 
         #region ListSelectedItem
-        private string listSelectedItem;
+        /*private string listSelectedItem;
 
         public string ListSelectedItem
         {
@@ -37,7 +37,7 @@ namespace XamarinTest
                 listSelectedItem = value;
                 OnPropertyChanged("ListSelectedItem");
             }
-        }
+        }*/
         #endregion
 
 

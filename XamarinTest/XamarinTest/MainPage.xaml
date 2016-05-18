@@ -43,7 +43,7 @@
     
       <Entry Grid.Row="0" VerticalOptions="Center" Text="{Binding InputValue}" />
       <Button Grid.Row="1" VerticalOptions="Center" Command="{Binding AddCommand}" Text="+" />
-      <ListView Grid.Row="2" ItemsSource="{Binding ListItems}" SelectedItem="{Binding ListSelectedItem}" >
+      <ListView Grid.Row="2" ItemsSource="{Binding ListItems}" >
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
