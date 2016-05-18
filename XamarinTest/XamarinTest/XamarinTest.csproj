@@ -44,6 +44,7 @@
     <Compile Include="MVVMBase\Command\AppCommand.cs" />
     <Compile Include="MVVMBase\ViewModel\ViewModelBase.cs" />
     <Compile Include="MyViewModel1.cs" />
+    <Compile Include="MyViewModel2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views.cs" />
   </ItemGroup>
