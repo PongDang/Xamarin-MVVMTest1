@@ -4,8 +4,12 @@
              xmlns:local="clr-namespace:XamarinTest"
              x:Class="XamarinTest.MainPage">
 
-  <Label Text="Welcome to Xamarin Forms!"
+  <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical">
+    <Label x:Name="label_test" Text="Welcome to Xamarin Forms!"
            VerticalOptions="Center"
            HorizontalOptions="Center" />
+
+    <Button x:Name="btn_test" Text="Button" />
+  </StackLayout>
 
 </ContentPage>
