@@ -5,7 +5,12 @@
              x:Class="XamarinTest.MainPage">
 
   <Grid>
-    <Grid VerticalOptions="Center">
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+      
+    <Grid x:Name="grid1" Grid.Row="0" VerticalOptions="Center">
       <Grid.RowDefinitions>
         <RowDefinition />
         <RowDefinition />
@@ -19,13 +24,41 @@
         <ColumnDefinition Width="2*" />
       </Grid.ColumnDefinitions>
 
-      <Editor Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Left}" />
+      <Entry Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Left}" />
       <Picker x:Name="myPicker" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" SelectedIndex="{Binding SelectedOperationIndex}" />
-      <Editor Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Right}" />
+      <Entry Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Keyboard="Numeric" Text="{Binding Right}" />
       <Label Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="=" />
       <Label Grid.Row="0" Grid.Column="4" VerticalOptions="Center" Text="{Binding Result, StringFormat='{0:F4}', Mode=OneWay}" />
 
-      <Button Grid.Row="1" Grid.ColumnSpan="5" VerticalOptions="Center" Command="{Binding AddCommand}" Text="?" />
+      <Button Grid.Row="1" Grid.ColumnSpan="5" VerticalOptions="Center" Command="{Binding OperationCommand}" Text="?" />
+    </Grid>
+  
+    <Grid x:Name="grid2" Grid.Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="50" />
+        <RowDefinition Height="50" />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+    
+      <Entry Grid.Row="0" VerticalOptions="Center" Text="{Binding InputValue}" />
+      <Button Grid.Row="1" VerticalOptions="Center" Command="{Binding AddCommand}" Text="+" />
+      <ListView Grid.Row="2" IsPullToRefreshEnabled="True" ItemsSource="{Binding ListItems}" SelectedItem="{Binding ListSelectedItem}" >
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+               <ViewCell.ContextActions>
+                  <MenuItem CommandParameter="{Binding .}" Command="{Binding RemoveCommand}" Text="Delete" IsDestructive="True" />
+               </ViewCell.ContextActions>
+              
+               <StackLayout Padding="15,0">
+                   <Label Text="{Binding .}" />
+               </StackLayout>
+            
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+      
     </Grid>
   </Grid>
 

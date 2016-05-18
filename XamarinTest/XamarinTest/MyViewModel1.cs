@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MVVMBase.Command;
 using MVVMBase.ViewModel;
@@ -14,12 +9,6 @@ namespace XamarinTest
     {
         public MyViewModel1()
         {
-            /*
-            operations.Add("+");
-            operations.Add("-");
-            operations.Add("*");
-            operations.Add("/");
-            */
         }
 
         #region Left
@@ -100,13 +89,13 @@ namespace XamarinTest
 
 
         #region AddCommand
-        private ICommand addCommand;
+        private ICommand operationCommand;
 
-        public ICommand AddCommand
+        public ICommand OperationCommand
         {
             get
             {
-                return addCommand ?? (addCommand = new AppCommand(
+                return operationCommand ?? (operationCommand = new AppCommand(
                     (object obj) =>
                     {
                         

@@ -12,26 +12,17 @@ namespace XamarinTest
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MyViewModel1();
-        }
+            grid1.BindingContext = new MyViewModel1();
 
-
-        /* Windows의 ComboBox의 대응하는 View는 Picker. 특이사항으로 Item은 Binding 불가. */
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-
-            var vm = BindingContext as MyViewModel1;
-            if (vm != null)
+            /* Windows의 ComboBox의 대응하는 View는 Picker. 특이사항으로 Item은 Binding 불가. */
+            foreach (var item in (grid1.BindingContext as MyViewModel1).Operations)
             {
-                myPicker.Items.Clear();
-                foreach (var item in vm.Operations)
-                {
-                    myPicker.Items.Add(item);
-                }
-
-                myPicker.SelectedIndex = 0;
+                myPicker.Items.Add(item);
             }
+            myPicker.SelectedIndex = 0;
+
+
+            grid2.BindingContext = new MyViewModel2();
         }
     }
 }
