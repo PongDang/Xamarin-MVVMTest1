@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MVVMBase.Command;
@@ -13,12 +14,6 @@ namespace XamarinTest
 {
     class MyViewModel2 : ViewModelBase
     {
-        public MyViewModel2()
-        {
-            ListItems.Add("Hello");
-            ListItems.Add("World");
-        }
-
         #region ListItems
         private ObservableCollection<string> listItems = new ObservableCollection<string>();
 
@@ -72,6 +67,9 @@ namespace XamarinTest
             {
                 return addCommand ?? (addCommand = new AppCommand((object obj) =>
                 {
+                    if (InputValue == null || InputValue == string.Empty)
+                        return;
+
                     ListItems.Add(InputValue);
                     InputValue = "";
                 }));
@@ -79,22 +77,39 @@ namespace XamarinTest
         }
         #endregion
 
-        #region RemoveCommand
-        private ICommand removeCommand;
 
-        public ICommand RemoveCommand
+        #region AsyncCommand
+        private ICommand ayncCommand;
+
+        public ICommand AsyncCommand
         {
             get
             {
-                return removeCommand ?? (removeCommand = new AppCommand((object obj) =>
+                return ayncCommand ?? (ayncCommand = new AppCommand((object obj) =>
                 {
-                    if (InputValue == null)
-                        return;
+                    var cancellationTokenSource = new CancellationTokenSource();
 
-                    ListItems.Remove(InputValue);
+                    List<string> tempList = new List<string>();
+                    Task.Factory.StartNew((obj1) =>
+                    {
+                        isRunning = true;
+
+                        Random r = new Random();
+
+                        for (int i = 0; i < 999999; i++)
+                        {
+                            tempList.Add(r.Next(int.MinValue, int.MaxValue).ToString());
+                        }
+
+                        listItems = new ObservableCollection<string>(tempList);
+                        OnPropertyChanged("ListItems");
+
+                        isRunning = false;
+                    }, TaskCreationOptions.LongRunning, cancellationTokenSource.Token);
                 }));
             }
         }
         #endregion
+
     }
 }

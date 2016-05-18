@@ -7,10 +7,6 @@ namespace XamarinTest
 {
     class MyViewModel1 : ViewModelBase
     {
-        public MyViewModel1()
-        {
-        }
-
         #region Left
         private int left;
         public int Left
